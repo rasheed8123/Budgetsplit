@@ -264,22 +264,22 @@ router.delete('/:id', auth, async (req, res) => {
 router.get('/group/:groupId/export', async (req, res) => {
   try {
     const groupId = req.params.groupId;
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+    // const token = req.header('Authorization')?.replace('Bearer ', '');
     
     // If there's a token, verify it
     let userId = null;
     
-    if (token) {
-      try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'default_jwt_secret');
-        userId = decoded.id;
-      } catch (err) {
-        // If token verification fails, return authentication error
-        return res.status(401).json({ message: 'Authentication required' });
-      }
-    } else {
-      return res.status(401).json({ message: 'Authentication required' });
-    }
+    // if (token) {
+    //   try {
+    //     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'default_jwt_secret');
+    //     userId = decoded.id;
+    //   } catch (err) {
+    //     // If token verification fails, return authentication error
+    //     return res.status(401).json({ message: 'Authentication required' });
+    //   }
+    // } else {
+    //   return res.status(401).json({ message: 'Authentication required' });
+    // }
     
     // Verify group exists and user is a member
     const group = await Group.findById(groupId);
