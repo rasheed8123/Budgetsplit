@@ -281,19 +281,19 @@ router.get('/group/:groupId/export', async (req, res) => {
     //   return res.status(401).json({ message: 'Authentication required' });
     // }
     
-    // Verify group exists and user is a member
-    const group = await Group.findById(groupId);
-    if (!group) {
-      return res.status(404).json({ message: 'Group not found' });
-    }
+    // // Verify group exists and user is a member
+    // const group = await Group.findById(groupId);
+    // if (!group) {
+    //   return res.status(404).json({ message: 'Group not found' });
+    // }
     
-    const isMember = group.members.some(
-      member => member.user.toString() === userId
-    );
+    // const isMember = group.members.some(
+    //   member => member.user.toString() === userId
+    // );
     
-    if (!isMember) {
-      return res.status(403).json({ message: 'Not authorized to export expenses for this group' });
-    }
+    // if (!isMember) {
+    //   return res.status(403).json({ message: 'Not authorized to export expenses for this group' });
+    // }
     
     // Get all expenses for this group
     const expenses = await Expense.find({ group: groupId })
